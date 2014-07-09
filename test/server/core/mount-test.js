@@ -66,7 +66,7 @@ vows.describe('director/core/mount').addBatch({
           assertRoute(foobar,      ['nesting', 'on'],                           router.routes);
           assertRoute(foostar,     ['nesting', 'deep', 'on'],                   router.routes);
           assertRoute(foobar,      [ 'foo', 'bar', 'on'],                       router.routes);
-          assertRoute(foostar,     ['foo', '([^ \\?\\\\\\/]+[^\\?\\\\\\/]*)', 'on'], router.routes);
+          assertRoute(foostar,     ['foo', '([^ \\?\\\\\\/<>]+[^\\?\\\\\\/<>]*)', 'on'], router.routes);
           assertRoute(fnArray,     ['foo', 'jitsu', 'then', 'on'],              router.routes);
           assertRoute(foobar,      ['foo', 'jitsu', 'then', 'before'],          router.routes);
           assertRoute(foobazzbuzz, ['foo', 'bazz', 'buzz', 'on'],               router.routes);
