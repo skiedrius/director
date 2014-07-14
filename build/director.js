@@ -1,7 +1,7 @@
 
 
 //
-// Generated on Wed Jul 09 2014 16:11:59 GMT+0300 (FLE Daylight Time) by Nodejitsu, Inc (Using Codesurgeon).
+// Generated on Mon Jul 14 2014 16:25:43 GMT+0300 (FLE Daylight Time) by Nodejitsu, Inc (Using Codesurgeon).
 // Version 1.2.4
 //
 
@@ -567,7 +567,9 @@ Router.prototype.traverse = function(method, path, routes, regexp, filter) {
         next = [ [ routes[r].before, routes[r][method] ].filter(Boolean) ];
         next.after = [ routes[r].after ].filter(Boolean);
         next.matched = true;
-        next.captures = match.slice(1);
+        next.captures = match.slice(1).map(function(capture) {
+          return decodeURI(capture);
+        });
         if (this.recurse && routes === this.routes) {
           next.push([ routes.before, routes.on ].filter(Boolean));
           next.after = next.after.concat([ routes.after ].filter(Boolean));
