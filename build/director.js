@@ -1,7 +1,7 @@
 
 
 //
-// Generated on Fri Feb 13 2015 18:00:37 GMT+0200 (EET) by Nodejitsu, Inc (Using Codesurgeon).
+// Generated on Wed May 27 2015 16:11:47 GMT+0300 (EEST) by Nodejitsu, Inc (Using Codesurgeon).
 // Version 1.2.4
 //
 
@@ -175,6 +175,8 @@ var Router = exports.Router = function (routes) {
 
   this.configure();
   this.mount(routes || {});
+
+  this.query = '';
 };
 
 Router.prototype.init = function (r) {
@@ -182,6 +184,7 @@ Router.prototype.init = function (r) {
   this.handler = function(onChangeEvent) {
     var newURL = onChangeEvent && onChangeEvent.newURL || window.location.hash;
     var url = self.history === true ? self.getPath() : newURL.replace(/.*#/, '');
+    self.query = self.history === true ? self.getQueryParams() : '';
     self.dispatch('on', url.charAt(0) === '/' ? url : '/' + url);
   };
 
@@ -284,6 +287,19 @@ Router.prototype.getPath = function () {
     path = '/' + path;
   }
   return path;
+};
+
+Router.prototype.getQueryParams = function () {
+  var search = window.location.search;
+
+  if (typeof search !== 'string') {
+    search = window.location.href.split('?')[1];
+  }
+  else {
+    search = search.substring(1);
+  }
+
+  return search || '';
 };
 function _every(arr, iterator) {
   for (var i = 0; i < arr.length; i += 1) {
