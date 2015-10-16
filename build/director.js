@@ -1,8 +1,8 @@
 
 
 //
-// Generated on Fri Oct 16 2015 17:56:48 GMT+0300 (EEST) by Nodejitsu, Inc (Using Codesurgeon).
-// Version 1.2.5
+// Generated on Wed May 27 2015 16:11:47 GMT+0300 (EEST) by Nodejitsu, Inc (Using Codesurgeon).
+// Version 1.2.4
 //
 
 (function (exports) {
@@ -356,7 +356,7 @@ function regifyString(str, params) {
   var matches, last = 0, out = "";
   while (matches = str.substr(last).match(/[^\w\d\- %@&]*\*[^\w\d\- %@&]*/)) {
     last = matches.index + matches[0].length;
-    matches[0] = matches[0].replace(/^\*/, "([_.()!\\/ %@&a-zA-Z0-9-ąčęėįšųūžĄČĘĖĮŠŲŪŽ]+)");
+    matches[0] = matches[0].replace(/^\*/, "([_.()!\\ %@&a-zA-Z0-9-ąčęėįšųūžĄČĘĖĮŠŲŪŽ]+)");
     out += str.substr(0, matches.index) + matches[0];
   }
   str = out += str.substr(last);
